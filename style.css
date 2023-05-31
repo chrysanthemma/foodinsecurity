@@ -1,43 +1,70 @@
+    /* Background Image */
+    /* background-image: url("UCLA MAP-01.svg");
+    background-size: 100% auto; */
+
 body{
     margin: 0;
     display: grid;
     grid-auto-rows: 100px auto auto;
     grid-template-areas: "header" "main_content" "footer";
-    /* background-color: #edede9; */
-    background-color: #edede9;
+    background-color:#1d3557;
+}
+
+p{
+    font-family: sans-serif;
+    margin: 0;
 }
 
 #header {
     grid-area: header;
+    background-color: white;
+    padding-left: 30px;
+}
+
+h1{
     font-family: 'Chivo', sans-serif;
-    /* letter-spacing: 5px; */
-    /* /* background-color: #b1be9d;
-    color: #edede9;
-    font-size: 36px;
-    padding-left: 50px;
-    padding-bottom: 10px;
-    padding-top: 50px; */
-    /* text-align:left; */
+    font-weight: 700;
+    /* color: #1d3557; */
+    font-size: 40px;
 }
 
 .main{
     grid-area: main_content;
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    grid-template-areas: "main_map content";
 }
 
-#contents{
-    grid-area: content;
+#intro{
+    background-color: #457b9d;
+    color: #edede9;
+    text-align: center;
+    /* Margins 
+    margin-left: 15%;
+    margin-right: 15%;
+    margin-top: 30px; */
+    margin-bottom: 30px;
+   /* Padding */
+    padding-top: 2%;
+    padding-bottom: 2%;
+    padding-right: 20%;
+    padding-left: 20%;
+    
+    display: grid;
+    grid-template-columns: 2fr 1fr;
+    grid-template-areas: "blurb surveyButton"
+}
+
+#surveyButton{
+    border-radius: 25px;
+    border-style: solid;
+    border-color: white;
+    border-width: medium;
+    background-color: #a8dadc;
+    padding: 10px;
 }
 
 #the_map{
     grid-area: main_map;
     height:80vh;
     margin: 30px;
-    /* border-style: solid;
-    border-width: thick;
-    border-color: #b1be9d; */
 }
 
 #footer{
