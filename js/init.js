@@ -1,5 +1,5 @@
 // declare variables
-let mapOptions = {'center': [34.0709,-118.444],'zoom':5}
+let mapOptions = {'center': [34.125381, -118.471901],'zoom':10}
 
 let none = L.featureGroup();
 let gluten_free = L.featureGroup();
@@ -42,10 +42,10 @@ const map = L.map('the_map').setView(mapOptions.center, mapOptions.zoom);
 // add layer control box
 L.control.layers(null,layers).addTo(map)
 
-let Esri_WorldGrayCanvas = L.tileLayer('https://server.arcgisonline.com/ArcGIS/rest/services/Canvas/World_Light_Gray_Base/MapServer/tile/{z}/{y}/{x}', {
-    attribution: 'Tiles &copy; Esri &mdash; Esri, DeLorme, NAVTEQ',
-    maxZoom: 16
-});
+let Esri_WorldGrayCanvas = L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+    attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
+}).addTo(map);
+
 
 Esri_WorldGrayCanvas.addTo(map);
 
@@ -118,8 +118,8 @@ function processData(results){
     fish_shellfish_allergies.addTo(map)
     egg_allergies.addTo(map)
     other.addTo(map)
-    let allLayers = L.featureGroup([none, gluten_free, dairy_lactose_free, vegetarian, vegan, kosher, nut_allergies, fish_shellfish_allergies, egg_allergies, other]);
-    map.fitBounds(allLayers.getBounds());
+    // let allLayers = L.featureGroup([none, gluten_free, dairy_lactose_free, vegetarian, vegan, kosher, nut_allergies, fish_shellfish_allergies, egg_allergies, other]);
+    // map.fitBounds(allLayers.getBounds());
 }
 
 loadData(dataUrl)
@@ -129,15 +129,15 @@ function createButtons(lat,lng,title,data){
     newButton.id = "button"+title; 
     newButton.setAttribute("lat",lat); 
     newButton.setAttribute("lng",lng); 
-    newButton.addEventListener('click', function() { map.flyTo([lat,lng],7); })
+    newButton.addEventListener('click', function() { map.flyTo([lat,lng],mapOptions.zoom); })
     const spaceForButtons = document.getElementById("userStories");
     spaceForButtons.appendChild(newButton); 
 
     // Button Text 
-    let resources =  "<h2>Recently Used Resource(s): </h2>" + data["Have you used a food security resource while at UCLA? \nIf so, please list your most recently used food security resource. Otherwise, type 'N/A.' (ex: CPO Food Closet, Emergency Meal Program, etc)"];
+    let resources = "<h2>Most Frequently Used Resource: </h2>" + data["Have you used a food security resource while at UCLA? \nIf so, please list your most recently used food security resource. Otherwise, type 'N/A.' (ex: CPO Food Closet, Emergency Meal Program, etc)"];
     let locationImpact = data["How has where you live impacted your access to food?"];
     let UCLAImpact = data["How has food insecurity impacted your quality of life at UCLA?"];
-    let text = resources + `<br>` + locationImpact + " " + UCLAImpact;
+    let text = resources + `<br><br>` + locationImpact + " " + UCLAImpact;
     if(data["Please list any dietary restrictions you may have:"] != "None"){
         dietaryImpact = data["How has your dietary restrictions affected your decision to access food security resources?"];
         text = text + " " + dietaryImpact;
@@ -145,15 +145,16 @@ function createButtons(lat,lng,title,data){
     newButton.innerHTML = text;
 
     // Button Styling
+    newButton.style.margin = "2px";
+    newButton.style.padding = "20px";
+    newButton.style.textAlign = "left";
     newButton.style.backgroundColor = "white";
-    newButton.style.color = "#1d3557";
-    newButton.style.display = "inline-block";
-    newButton.style.width = "25%";
 
+    // newButton.style.display = "inline-block";
+    // newButton.style.width = "25%";
     // newButton.style.fontSize = "12px";
     // newButton.style.fontFamily = "";
     // newButton.style.textAlign = "center";
-    // newButton.style.margin = "2px"
     // newButton.style.paddingTop = "8px";
     // newButton.style.paddingBottom = "8px";
     // newButton.style.justifyContent = "center";

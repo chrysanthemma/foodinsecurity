@@ -1,32 +1,7 @@
-    /* Background Image */
-    /* background-image: url("UCLA MAP-01.svg");
-    background-size: 100% auto; */
-
-body{
-    margin: 0;
-    display: grid;
-    grid-auto-rows: 100px auto auto;
-    grid-template-areas: "header" "main_content" "footer";
-    background-color:#1d3557;
-}
-
-/* Headers Inside Buttons*/
-h2{
-    font-family: 'Chivo', sans-serif;
-    font-size: medium;
-    margin: 0;
-    display: inline;
-}
-
+/* Tag Styling */
 p{
     font-family: sans-serif;
     margin: 0;
-}
-
-#header {
-    grid-area: header;
-    background-color: white;
-    padding-left: 30px;
 }
 
 h1{
@@ -36,10 +11,35 @@ h1{
     font-size: 40px;
 }
 
-.main{
-    grid-area: main_content;
+/* Headers Inside Buttons*/
+h2{
+    font-family: 'Chivo', sans-serif;
+    font-size: medium;
+    margin: 0;
+    display: inline;
+    color:#457b9d;
 }
 
+/* Sections */
+
+body{
+    margin: 0;
+    display: grid;
+    grid-auto-rows: 100px auto auto auto;
+    grid-template-areas: "header" "intro" "main_content" "footer";
+    background-color:rgb(235, 235, 235);
+    /* Background Image */
+    /* background-image: url("UCLA MAP-01.svg");
+    background-size: 100% auto; */
+}
+
+#header {
+    grid-area: header;
+    background-color: white;
+    padding-left: 30px;
+}
+
+/* Top Little Section*/
 #intro{
     background-color: #457b9d;
     color: #edede9;
@@ -65,15 +65,36 @@ h1{
     padding: 10px;
 }
 
-#userStories{
-    height: 200px;
-    overflow: auto;
+/* Stories & Map */
+.main{
+    grid-area: main_content;
+    /* background-color: #457b9d; */
+    display: grid;
+    grid-auto-columns: 1fr 1fr;
+    grid-template-areas: "stories map";
     margin-left: 5%;
     margin-right: 5%;
 }
 
+/* .main:before{
+    content: '';
+    width: 900px;
+    height: 900px;
+    
+} */
+
+#userStories{
+    grid-area: stories;
+    overflow: auto;
+    height: 700px;
+    /* height: 200px;
+    overflow: auto;
+    margin-left: 5%;
+    margin-right: 5%; */
+}
+
 #the_map{
-    grid-area: main_map;
+    grid-area: map;
     height:80vh;
     margin: 30px;
 }
