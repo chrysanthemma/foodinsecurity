@@ -106,6 +106,7 @@ function processData(results){
     results.data.forEach(data => {
         console.log(data)
         addMarker(data)
+        createButtons(data.lat, data.lng, data["Timestamp"], data)
     })
     none.addTo(map) // add our layers after markers have been made
     gluten_free.addTo(map) // add our layers after markers have been made  
@@ -122,3 +123,39 @@ function processData(results){
 }
 
 loadData(dataUrl)
+
+function createButtons(lat,lng,title,data){
+    const newButton = document.createElement("button"); 
+    newButton.id = "button"+title; 
+    newButton.setAttribute("lat",lat); 
+    newButton.setAttribute("lng",lng); 
+    newButton.addEventListener('click', function() { map.flyTo([lat,lng],7); })
+    const spaceForButtons = document.getElementById("userStories");
+    spaceForButtons.appendChild(newButton); 
+
+    // Button Text 
+    let resources =  "<h2>Recently Used Resource(s): </h2>" + data["Have you used a food security resource while at UCLA? \nIf so, please list your most recently used food security resource. Otherwise, type 'N/A.' (ex: CPO Food Closet, Emergency Meal Program, etc)"];
+    let locationImpact = data["How has where you live impacted your access to food?"];
+    let UCLAImpact = data["How has food insecurity impacted your quality of life at UCLA?"];
+    let text = resources + `<br>` + locationImpact + " " + UCLAImpact;
+    if(data["Please list any dietary restrictions you may have:"] != "None"){
+        dietaryImpact = data["How has your dietary restrictions affected your decision to access food security resources?"];
+        text = text + " " + dietaryImpact;
+    }
+    newButton.innerHTML = text;
+
+    // Button Styling
+    newButton.style.backgroundColor = "white";
+    newButton.style.color = "#1d3557";
+    newButton.style.display = "inline-block";
+    newButton.style.width = "25%";
+
+    // newButton.style.fontSize = "12px";
+    // newButton.style.fontFamily = "";
+    // newButton.style.textAlign = "center";
+    // newButton.style.margin = "2px"
+    // newButton.style.paddingTop = "8px";
+    // newButton.style.paddingBottom = "8px";
+    // newButton.style.justifyContent = "center";
+    // newButton.style.cursor = "pointer";
+}

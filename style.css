@@ -10,6 +10,14 @@ body{
     background-color:#1d3557;
 }
 
+/* Headers Inside Buttons*/
+h2{
+    font-family: 'Chivo', sans-serif;
+    font-size: medium;
+    margin: 0;
+    display: inline;
+}
+
 p{
     font-family: sans-serif;
     margin: 0;
@@ -36,10 +44,6 @@ h1{
     background-color: #457b9d;
     color: #edede9;
     text-align: center;
-    /* Margins 
-    margin-left: 15%;
-    margin-right: 15%;
-    margin-top: 30px; */
     margin-bottom: 30px;
    /* Padding */
     padding-top: 2%;
@@ -59,6 +63,13 @@ h1{
     border-width: medium;
     background-color: #a8dadc;
     padding: 10px;
+}
+
+#userStories{
+    height: 200px;
+    overflow: auto;
+    margin-left: 5%;
+    margin-right: 5%;
 }
 
 #the_map{
