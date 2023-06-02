@@ -4,8 +4,10 @@ p{
     margin: 0;
 }
 
+/* Top Header */
 h1{
     font-family: 'Chivo', sans-serif;
+    color:#457b9d;
     font-weight: 700;
     /* color: #1d3557; */
     font-size: 40px;
@@ -20,23 +22,46 @@ h2{
     color:#457b9d;
 }
 
+h3{
+    font-family: 'Chivo', sans-serif;
+    display: inline;
+    /* font-size: large; */
+    color: black;
+}
+
+a:visited{
+    text-decoration: none;
+}
+
 /* Sections */
 
 body{
     margin: 0;
     display: grid;
     grid-auto-rows: 100px auto auto auto;
-    grid-template-areas: "header" "intro" "main_content" "footer";
+    grid-template-areas: "nav" "intro" "main_content" "footer";
     background-color:rgb(235, 235, 235);
-    /* Background Image */
-    /* background-image: url("UCLA MAP-01.svg");
-    background-size: 100% auto; */
+}
+
+nav{
+    display: grid;
+    grid-auto-columns: 1fr 1fr;
+    grid-template-areas: "header links";
+    background-color: white;
 }
 
 #header {
     grid-area: header;
     background-color: white;
     padding-left: 30px;
+}
+
+#links{
+    grid-area: links;
+    display: block;
+    padding-top: 60px;
+    padding-right: 15%;
+    text-align: right;
 }
 
 /* Top Little Section*/
@@ -63,40 +88,6 @@ body{
     border-width: medium;
     background-color: #a8dadc;
     padding: 10px;
-}
-
-/* Stories & Map */
-.main{
-    grid-area: main_content;
-    /* background-color: #457b9d; */
-    display: grid;
-    grid-auto-columns: 1fr 1fr;
-    grid-template-areas: "stories map";
-    margin-left: 5%;
-    margin-right: 5%;
-}
-
-/* .main:before{
-    content: '';
-    width: 900px;
-    height: 900px;
-    
-} */
-
-#userStories{
-    grid-area: stories;
-    overflow: auto;
-    height: 700px;
-    /* height: 200px;
-    overflow: auto;
-    margin-left: 5%;
-    margin-right: 5%; */
-}
-
-#the_map{
-    grid-area: map;
-    height:80vh;
-    margin: 30px;
 }
 
 #footer{

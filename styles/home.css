@@ -1,0 +1,22 @@
+/* Stories & Map */
+
+.main{
+    grid-area: main_content;
+    display: grid;
+    grid-auto-columns: 1fr 1fr;
+    grid-template-areas: "stories map";
+    margin-left: 5%;
+    margin-right: 5%;
+}
+
+#userStories{
+    grid-area: stories;
+    overflow: auto;
+    height: 700px;
+}
+
+#the_map{
+    grid-area: map;
+    height:80vh;
+    margin: 30px;
+}
