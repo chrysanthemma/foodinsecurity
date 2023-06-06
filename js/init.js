@@ -149,7 +149,10 @@ function createButtons(lat,lng,title,data){
     newButton.style.padding = "20px";
     newButton.style.textAlign = "left";
     newButton.style.backgroundColor = "white";
-
+    newButton.addEventListener('mouseover', () => {
+        newButton.style.backgroundColor = 'rgb(238, 238, 238)';})
+    newButton.addEventListener('mouseout', () => {
+            newButton.style.backgroundColor = 'white';})
     // newButton.style.display = "inline-block";
     // newButton.style.width = "25%";
     // newButton.style.fontSize = "12px";
