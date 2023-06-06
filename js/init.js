@@ -90,7 +90,7 @@ function addMarker(data){
         circleOptions.fillColor = "#9FE2BF"
         other.addLayer(L.circleMarker([data.lat,data.lng],circleOptions).bindPopup(`<h2>Other</h2>`))
     }
-    return data
+    return data;
 }
 
 function loadData(url){
@@ -104,9 +104,8 @@ function loadData(url){
 function processData(results){
     console.log(results)
     results.data.forEach(data => {
-        console.log(data)
-        addMarker(data)
-        createButtons(data.lat, data.lng, data["Timestamp"], data)
+        addMarker(data);
+        createButtons(data.lat, data.lng, data["Timestamp"], data);
     })
     none.addTo(map) // add our layers after markers have been made
     gluten_free.addTo(map) // add our layers after markers have been made  
@@ -150,7 +149,7 @@ function createButtons(lat,lng,title,data){
     newButton.style.textAlign = "left";
     newButton.style.backgroundColor = "white";
     newButton.addEventListener('mouseover', () => {
-        newButton.style.backgroundColor = 'rgb(238, 238, 238)';})
+        newButton.style.backgroundColor = "rgb(235, 235, 235)";})
     newButton.addEventListener('mouseout', () => {
             newButton.style.backgroundColor = 'white';})
     // newButton.style.display = "inline-block";
