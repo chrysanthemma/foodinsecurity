@@ -14,6 +14,8 @@ Further development of our project can include understanding user feedback, expa
 **Future Development and Repurpose:**
 Future development of our project will hopefully develop into a dashboard for the UCLA community, initiating a conversation between UCLA groups such as the UCLA Healthy Campus Initiative, UCLA Eat Well, and UCLA Fitted. UCLA Eat Well and UCLA Fitted are catered to maintaining student welfare and the promotion of healthy living, so access to a food insecurity resource is vital. These organizations could utilize this resource by exposing UCLA to the student experience and helping highlight how students are handling their own food security. Additionally, making a dashboard that highlights the student experience can perpetuate future dialogue and changes toward bettering this community condition. By actively developing this resource, we can create a culture of student empowerment and address food-insecurity within the UCLA community.
 
+**Slideshow Presentation:** https://www.canva.com/design/DAFlp83ygzE/355ifzkT2VI8RCZQlRWUVQ/edit?utm_content=DAFlp83ygzE&utm_campaign=designshare&utm_medium=link2&utm_source=sharebutton
+
 **Website Features:**
 - Apartment / Commute buttons change the zoom of the map to the right
 - Statsitic / Bar chart udpates as more people take the survey
