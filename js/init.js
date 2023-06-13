@@ -1,6 +1,6 @@
 // Define the Leaflet map
-let uclaCoord = [34.0690, -118.4438];
-let mapOptions = {'center': uclaCoord,'zoom':14}
+let uclaCoord = [34.0660, -118.4438];
+let mapOptions = {'center': uclaCoord,'zoom':15}
 
 const map = L.map('the_map').setView(mapOptions.center, mapOptions.zoom);
 
@@ -11,15 +11,6 @@ var CartoDB_Positron = L.tileLayer('https://{s}.basemaps.cartocdn.com/light_all/
 	maxZoom: 20
 });
 CartoDB_Positron.addTo(map);
-
-let circleOptions = {
-    radius: 6,
-    fillColor: "#457b9d",
-    color: "#000",
-    weight: 1,
-    opacity: 1,
-    fillOpacity: 0.8
-}
 
 // Loading Data
 function loadData(url){
@@ -33,24 +24,62 @@ const dataUrl = "https://docs.google.com/spreadsheets/d/e/2PACX-1vSc_884KqgNiQ2l
 loadData(dataUrl)
 
 // Creating Markers
-let uclaMarker = L.marker(uclaCoord).addTo(map)
-        .bindPopup('University of California, Los Angeles')
-        .openPopup();
+let apartment = L.featureGroup();
+let commuter = L.featureGroup();
 
 function processData(results){
     results.data.forEach(data => {
-        let story = "<h2>Experience: </h2><br>\""
-            + data["How has food insecurity impacted your quality of life at UCLA? "] + "\"<br><br>"
-            + "<h2>Impact of Location on Food Acess: </h2><br>\""
-            + data["Why did you choose the answer above?"] + "\"";
-        L.circleMarker([data.lat,data.lng],circleOptions).addTo(map).bindPopup(story)
-        .on('mouseover', function (e) {
-            this.openPopup();
-            this.setStyle({fillColor: "white"});
-        })
-        .on('mouseout', function (e) {
-            this.closePopup();
-            this.setStyle({fillColor: "#457b9d"});
-        });
+        addMarker(data);
     })
+    apartment.addTo(map);
+    commuter.addTo(map);
 }
+let startColor = "#1d3557"
+let circleOptions = {
+    radius: 6,
+    fillColor: startColor,
+    color: "#000",
+    weight: 1,
+    opacity: 1,
+    fillOpacity: 0.8
+}
+
+function addMarker(data){
+    let story = "<h2>Experience: </h2><br>\""
+        + data["How has food insecurity impacted your quality of life at UCLA? "] + "\"<br><br>"
+        + "<h2>Impact of Location on Food Acess: </h2><br>\""
+        + data["Why did you choose the answer above?"] + "\"";
+
+    let layer;
+    let startColor;
+    if (data["Do you think where you live significantly impacts your access to food?"] == "Yes"){
+        layer = apartment;
+    } 
+    else {
+        layer = commuter;
+        startColor = "#a8dadc";
+    }
+
+    layer.addLayer(L.circleMarker([data.lat,data.lng],circleOptions).bindPopup(story)
+    .on('mouseover', function (e) {
+        this.openPopup();
+        this.setStyle({fillColor: "white"});
+    })
+    .on('mouseout', function (e) {
+        this.closePopup();
+        this.setStyle({fillColor: startColor});
+    }))
+    
+    return data;
+}
+
+// Create Buttons
+function flytoUCLA(){
+    map.flyTo(mapOptions.center, mapOptions.zoom);
+}
+
+function flytoLA(){
+    map.flyTo([34.073620,-118.400352],11);
+}
+// let uclaMarker = L.marker(uclaCoord).addTo(map)
+//         .bindPopup('University of California, Los Angeles');

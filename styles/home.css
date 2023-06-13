@@ -10,20 +10,17 @@
 }
 /* Top Little Section*/
 #intro{
-    background-color: #efefef;
-    text-align: center;
-    margin: 30px 25%;
-    padding-bottom: 20px;
+    grid-area: "intro";
 }
 
+#mapTitle{
+    font-family: 'Chivo', sans-serif;
+    font-size: 43px;
+    margin-top: 20%;
+}
 #blurb{
     font-family: 'Chivo', sans-serif;
-    margin: auto;
-    padding-top: 3%;
-    padding-bottom: 7px;
-    padding-left: 8%;
-    padding-right: 8%;
-    font-size: large;
+    margin-top: 10px;
 }
 
 #the_map{
@@ -39,3 +36,17 @@
     overflow: auto;
     height: 700px;
 } */
+
+/*
+ margin: auto;
+    padding-top: 3%;
+    padding-bottom: 7px;
+    padding-left: 8%;
+    padding-right: 8%;
+    font-size: large;
+
+    background-color: #efefef;
+    text-align: center;
+    margin: 30px 25%;
+    padding-bottom: 20px;
+*/
