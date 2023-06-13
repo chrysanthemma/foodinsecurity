@@ -22,6 +22,21 @@
     font-family: 'Chivo', sans-serif;
     margin-top: 10px;
 }
+#buttons{
+    justify-content: center;
+}
+
+#stats{
+    margin-bottom: 20px;
+}
+
+#statsBox{
+    background-color: #efefef;
+    text-align: center;
+    margin-right: 5%;
+    margin-top: 30px;
+    padding: 5%;
+}
 
 #the_map{
     grid-area: map;

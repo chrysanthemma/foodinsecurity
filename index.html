@@ -39,10 +39,20 @@
             <div id="intro">
                 <div id="mapTitle">Student Experiences with Food Access</div>
                 <div id="blurb">
-                    Learning and spreading awareness about the needs of our campus. Hover over different points to read student stories. 
+                    <p><i>Learning and spreading awareness about the needs of our campus.</i></p>
                 </div>
-                <button type="button" id="aptButton" onclick="flytoUCLA()">Apartment Stories</button>
-                <button type="button" id="comButton" onclick="flytoLA()">Commuter Stories</button>
+                <div class="line"></div>
+                <div class="instructions">
+                    <p>Hover over different points to read student stories. Click on either button below to focus the map on specific stories.</p>
+                </div>
+                <div id="buttons">
+                    <button type="button" class = "button" id="aptButton" onclick="flytoUCLA()">Apartment Stories</button>
+                    <button type="button" class = "button" id="comButton" onclick="flytoLA()">Commuter Stories</button>
+                </div>
+                <div id="statsBox">
+                    <div id="stats"></div>
+                    <canvas id="canvas" height="50" width="500"></canvas>
+                </div>
             </div>
             <div id="the_map"></div>
         </div>

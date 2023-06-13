@@ -24,43 +24,50 @@ const dataUrl = "https://docs.google.com/spreadsheets/d/e/2PACX-1vSc_884KqgNiQ2l
 loadData(dataUrl)
 
 // Creating Markers
-let apartment = L.featureGroup();
-let commuter = L.featureGroup();
+let allLayers;
+let impact = L.featureGroup();
+let noImpact = L.featureGroup();
+
+let layers = {
+    "<svg height='10' width='10'><circle cx='5' cy='5' r='4' fill='#457b9d' /></svg> Indicated Location Significantly Impacts Food Access": impact,
+    "<svg height='10' width='10'><circle cx='5' cy='5' r='4' fill='#735d78' /></svg> Indicated Location Doesn't Significantly Impact Food Access": noImpact
+}
+L.control.layers(null,layers,{collapsed:false}).addTo(map);
 
 function processData(results){
     results.data.forEach(data => {
         addMarker(data);
     })
-    apartment.addTo(map);
-    commuter.addTo(map);
+    impact.addTo(map);
+    noImpact.addTo(map);
+    allLayers = L.featureGroup([impact,noImpact]);
+    drawRectangles(results);
 }
-let startColor = "#1d3557"
+
 let circleOptions = {
-    radius: 6,
-    fillColor: startColor,
-    color: "#000",
-    weight: 1,
-    opacity: 1,
+    radius: 7,
+    weight: 0,
     fillOpacity: 0.8
 }
 
 function addMarker(data){
     let story = "<h2>Experience: </h2><br>\""
         + data["How has food insecurity impacted your quality of life at UCLA? "] + "\"<br><br>"
-        + "<h2>Impact of Location on Food Acess: </h2><br>\""
+        + "<h2>Impact of Location on Insecurity: </h2><br>\""
         + data["Why did you choose the answer above?"] + "\"";
 
     let layer;
     let startColor;
     if (data["Do you think where you live significantly impacts your access to food?"] == "Yes"){
-        layer = apartment;
+        layer = impact;
+        startColor = "#457b9d";
     } 
     else {
-        layer = commuter;
-        startColor = "#a8dadc";
+        layer = noImpact;
+        startColor = "#735d78";
     }
 
-    layer.addLayer(L.circleMarker([data.lat,data.lng],circleOptions).bindPopup(story)
+    layer.addLayer(L.circleMarker([data.lat,data.lng],circleOptions).bindPopup(story).setStyle({fillColor: startColor})
     .on('mouseover', function (e) {
         this.openPopup();
         this.setStyle({fillColor: "white"});
@@ -79,7 +86,43 @@ function flytoUCLA(){
 }
 
 function flytoLA(){
-    map.flyTo([34.073620,-118.400352],11);
+    map.fitBounds(allLayers.getBounds());
 }
-// let uclaMarker = L.marker(uclaCoord).addTo(map)
-//         .bindPopup('University of California, Los Angeles');
+
+// Create Stats
+function drawRectangles(results) {
+    let imCount = 0;
+    let nImCount = 0;
+    results.data.forEach(data => {
+        if (data["Do you think where you live significantly impacts your access to food?"] == "Yes"){
+            imCount++;
+        }
+        else {
+            nImCount++;
+        }
+    })
+    let imCountPercent = imCount / (imCount + nImCount);
+    let nImCountPercent = nImCount / (imCount + nImCount);
+
+    const canvas = document.querySelector('#canvas');
+    if (!canvas.getContext) { return; }
+    const ctx = canvas.getContext('2d');
+
+    /*Draw Impact Percent*/
+    let totalWidth = 425;
+    let imWidth = totalWidth*imCountPercent;
+    ctx.fillStyle = '#457b9d';
+    ctx.fillOpacity = 0.8;
+    ctx.fillRect(0, 0, imWidth, 50);
+    /*Draw Not Impact Percent*/
+    ctx.fillStyle = '#735d78';
+    ctx.fillOpacity = 0.8;
+    ctx.fillRect(imWidth, 0, totalWidth*nImCountPercent, 50);
+    /*Text*/
+    let percentNice = imCountPercent * 100;
+    let statsText = `${percentNice.toFixed(0)}% of people surveyed think their location significantly impacts their access to food`;
+    var node = document.getElementById('stats');
+    var newNode = document.createElement('p');
+    newNode.appendChild(document.createTextNode(statsText));
+    node.appendChild(newNode);
+}
