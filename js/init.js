@@ -29,8 +29,8 @@ let impact = L.featureGroup();
 let noImpact = L.featureGroup();
 
 let layers = {
-    "<svg height='10' width='10'><circle cx='5' cy='5' r='4' fill='#457b9d' /></svg> Indicated Location Significantly Impacts Food Access": impact,
-    "<svg height='10' width='10'><circle cx='5' cy='5' r='4' fill='#735d78' /></svg> Indicated Location Doesn't Significantly Impact Food Access": noImpact
+    "<svg height='10' width='10'><circle cx='5' cy='5' r='4' fill='#457b9d' /></svg> Indicated Location Significantly Impacts Food Security": impact,
+    "<svg height='10' width='10'><circle cx='5' cy='5' r='4' fill='#735d78' /></svg> Indicated Location Doesn't Significantly Impact Food Security": noImpact
 }
 L.control.layers(null,layers,{collapsed:false}).addTo(map);
 
@@ -121,7 +121,7 @@ function drawRectangles(results) {
     ctx.fillRect(imWidth, 0, totalWidth*nImCountPercent, 50);
     /*Text*/
     let percentNice = imCountPercent * 100;
-    let statsText = `${percentNice.toFixed(0)}% (${imCount}/${totalCount}) of people surveyed think their location significantly impacts their access to food`;
+    let statsText = `${percentNice.toFixed(0)}% (${imCount}/${totalCount}) of people surveyed think their location significantly impacts their food security`;
     var node = document.getElementById('stats');
     var newNode = document.createElement('p');
     newNode.appendChild(document.createTextNode(statsText));
