@@ -9,7 +9,7 @@ h1{
     color: white; 
     font-family: 'Chivo', sans-serif;
     font-weight: 600;
-    font-size: 40px;
+    font-size: 30px;
     display: inline-block;
 }
 
@@ -26,7 +26,8 @@ h3{
 /* Headers Inside Buttons*/
 h2{
     font-family: 'Chivo', sans-serif;
-    font-size: medium;
+    font-size: small;
+    font-weight: lighter;
     margin: 0;
     display: inline;
     color:#457b9d;
@@ -37,58 +38,38 @@ a:visited{
 }
 
 /* Sections */
-
 body{
     margin: 0;
     display: grid;
-    grid-auto-rows: 100px auto auto auto;
-    grid-template-areas: "nav" "intro" "main_content" "footer";
+    grid-auto-rows: 80px auto auto;
+    grid-template-areas: "nav" "main_content" "footer";
     background-color: white;
 }
 
+#header {
+    grid-area: header;
+    padding-left: 5%;
+}
 nav{
     display: grid;
     grid-auto-columns: 1fr 1fr;
     grid-template-areas: "header links";
     background-color: #457b9d;
 }
-
-#header {
-    grid-area: header;
-    padding-left: 30px;
-}
-
 #links{
     grid-area: links;
     display: block;
-    padding-top: 60px;
-    padding-right: 15%;
+    padding-top: 4.5%;
+    padding-right: 6%;
     text-align: right;
 }
 
-/* Top Little Section*/
-#intro{
-    /*rgb(235, 235, 235)*/
-    background-color: #efefef;
-    text-align: center;
-    margin: 30px 25%;
-    padding-bottom: 20px;
-    
-    /* display: grid;
-    grid-template-rows: 1fr 1fr;
-    grid-template-areas: "blurb" "surveyButton" */
+#footer{
+    grid-area: footer;
+    margin-top: 50px;
 }
 
-#blurb{
-    font-family: 'Chivo', sans-serif;
-    margin: auto;
-    padding-top: 3%;
-    padding-bottom: 7px;
-    padding-left: 8%;
-    padding-right: 8%;
-    font-size: large;
-}
-
+/* Unused CSS */
 /* #surveyButton{
     background-color: #eb5d68;
     font-family: sans-serif;
@@ -105,9 +86,4 @@ nav{
 #surveyButton:hover{
     background-color: #e63946;
 } */
-
-#footer{
-    grid-area: footer;
-    margin-top: 50px;
-}
 
