@@ -45,7 +45,7 @@ function processData(results){
 }
 
 let circleOptions = {
-    radius: 7,
+    radius: 9,
     weight: 0,
     fillOpacity: 0.8
 }
@@ -101,8 +101,9 @@ function drawRectangles(results) {
             nImCount++;
         }
     })
-    let imCountPercent = imCount / (imCount + nImCount);
-    let nImCountPercent = nImCount / (imCount + nImCount);
+    let totalCount = imCount + nImCount;
+    let imCountPercent = imCount / totalCount;
+    let nImCountPercent = nImCount / totalCount;
 
     const canvas = document.querySelector('#canvas');
     if (!canvas.getContext) { return; }
@@ -120,7 +121,7 @@ function drawRectangles(results) {
     ctx.fillRect(imWidth, 0, totalWidth*nImCountPercent, 50);
     /*Text*/
     let percentNice = imCountPercent * 100;
-    let statsText = `${percentNice.toFixed(0)}% of people surveyed think their location significantly impacts their access to food`;
+    let statsText = `${percentNice.toFixed(0)}% (${imCount}/${totalCount}) of people surveyed think their location significantly impacts their access to food`;
     var node = document.getElementById('stats');
     var newNode = document.createElement('p');
     newNode.appendChild(document.createTextNode(statsText));
