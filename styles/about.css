@@ -1,11 +1,10 @@
 .about{
     background-color: #efefef;
     text-align: center;
-    margin: 5%;
-    margin-bottom: 3%;
-    padding: 5%;
+    margin: 2% 10%;
+    padding: 3%;
 }
 
-h3{
-    color:#457b9d;
+h2{
+    font-size: 20px;
 }
